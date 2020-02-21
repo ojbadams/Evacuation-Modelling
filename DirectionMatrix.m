@@ -37,4 +37,19 @@ thetMat = atand(abs(Cy-exMaty)./abs(exMatx-Cx)); %Angles are determined. Only po
 Cy = -valMaty.*vm.*sind(thetMat); %The sign matrices are multiplied to obtain the appropriate value
 Cx = valMatx.*vm.*cosd(thetMat); 
 
+for i=1:noOfExits %At this point the exit positions are NaN. This code checks where the exits are and assigns the appropriate vector
+    if exits(i) == matSize 
+        Cy(exits(i,1),exits(i,2)) = vm; 
+    elseif exits(i) == 1  
+        Cy(exits(i,1),exits(i,2)) = -vm; 
+    end 
+    
+    if exits(i,2) == matSize
+        Cx(exits(i,1),exits(i,2)) = -vm; 
+    elseif exits(i,2) == 1 
+        Cx(exits(i,1),exits(i,2)) = vm; 
+    end 
+end
+      
+
 end 

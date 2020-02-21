@@ -54,13 +54,14 @@ end
 
 [X,Y] = meshgrid(x,y); 
 
-P(:,:,1) = 1 -X.^2 - Y.^2; %Calculated an upsideown parabola. Any negative values are set to 0.  
+P(:,:,1) = 1 -X.^2 - Y.^2; 
 P(P(:,:,1) < 0 ) = 0; 
 
 %%
 %---------------Lax Friedrichs---------------------------------------------
 
-rangeVec = 2:matSize-1; %This is used to avoid going into out of range 
+subPMat = P(2:matSize-1,2:matSize-1,:); 
+rangeVec = 2:matSize-1;
 
 for m=1:floor(tMax/k) %600
     disp([int2str(m), ' / ' , int2str(floor(tMax/k))]);  
